@@ -2,9 +2,9 @@
 
 Package.describe({
   summary: "Several useful money libraries",
-  version: "0.2.5",
-  name: "andylash:money",
-  git: "https://github.com/andylash/meteor-money-js.git"
+  version: "0.2.6",
+  name: "aserranom:money",
+  git: "https://github.com/aserranom/meteor-money-js.git"
 });
 
 

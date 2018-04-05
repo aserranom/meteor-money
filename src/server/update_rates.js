@@ -15,7 +15,7 @@ FXRatesHelper.updateFxRates = function() {
       ".  Doc: " + EJSON.stringify(doc));
     return;
   }
-  console.log("Updated fxrates from openexchangerates");
+
   FXRates.upsert({
     timestamp: doc.content.timestamp
   }, {
@@ -25,7 +25,9 @@ FXRatesHelper.updateFxRates = function() {
 
 Meteor.startup(function() {
   Meteor.defer(function() {
-    FXRatesHelper.updateFxRates();
+    if(!FXRates.findOne()) {
+      FXRatesHelper.updateFxRates();
+    }
   });
 
   //this job gets updated fx rates
@@ -34,7 +36,7 @@ Meteor.startup(function() {
     schedule: function(parser) {
       // parser is a later.parse object
       var schedule = Meteor.settings && Meteor.settings.OpenExchange &&
-        Meteor.settings.OpenExchange.updateSchedule || "every day";
+        Meteor.settings.OpenExchange.updateSchedule || "every 1 day";
       // var schedule = 'every minute';
       return parser.text(schedule);
     },
