@@ -25,9 +25,7 @@ FXRatesHelper.updateFxRates = function() {
 
 Meteor.startup(function() {
   Meteor.defer(function() {
-    if(!FXRates.findOne()) {
-      FXRatesHelper.updateFxRates();
-    }
+    FXRatesHelper.updateFxRates();
   });
 
   //this job gets updated fx rates
